@@ -7,6 +7,7 @@
 var http = require('http');
 var irc = require('irc');
 var secret = require('./secret.js');
+var jargon = require('./jargon.js');
 //console.log(irc);
 var client  = new irc.Client(secret.irc, secret.name, { channels: [secret.channel]});
 
@@ -43,5 +44,7 @@ client.addListener("message", function(from, to, message){
 			    //console.log('BODY: ' + chunk);
 			  });
 		});
+	}else if(message.indexOf("no, it does not align with our core business strategy") != -1){
+		client.say(secret.channel, "Have you considered trying " + jargon.go());
 	};
 });
